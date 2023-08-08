@@ -1,8 +1,9 @@
-from flask import jsonify, request
-from . import app
-from .models import User
+from flask import Blueprint, jsonify, request
+from app.models.user import User
 
-@app.route('/users', methods=['GET', 'POST'])
+user_bp = Blueprint('user_bp', __name__)
+
+@user_bp.route('/users', methods=['GET', 'POST'])
 def users():
     if request.method == 'GET':
         users = User.get_all()
@@ -13,7 +14,7 @@ def users():
         user.save()
         return jsonify({'message': 'User created successfully!'}), 201
 
-@app.route('/users/<string:user_id>', methods=['GET', 'PUT', 'DELETE'])
+@user_bp.route('/users/<string:user_id>', methods=['GET', 'PUT', 'DELETE'])
 def user_detail(user_id):
     if request.method == 'GET':
         user = User.get_by_id(user_id)

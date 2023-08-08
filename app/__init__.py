@@ -11,4 +11,5 @@ db = client.get_default_database()
 # Print a message confirming the MongoDB connection
 print("Connected to MongoDB!")
 
-from .routes import *
+from .routes import init_app
+init_app(app)

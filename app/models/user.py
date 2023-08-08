@@ -1,4 +1,4 @@
-from . import db
+from .. import db
 from bson.objectid import ObjectId
 
 class User:
